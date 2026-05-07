@@ -9,8 +9,8 @@ public class Chance {
         this.value = value;
     }
 
-    public static Chance create(double value) throws IllegalArgumentException {
-        if (value < 0 || value > 1) throw new IllegalArgumentException("Chance should be between 0 and 1!");
+    public static Chance create(double value) throws InvalidProbabilityCreationException {
+        if (value < 0 || value > 1) throw new InvalidProbabilityCreationException("Chance should be between 0 and 1!");
         return new Chance(value);
     }
 
@@ -25,11 +25,15 @@ public class Chance {
         return Objects.hashCode(value);
     }
 
-    public Chance not() {
-        return Chance.create(1-value);
+    public Chance not() throws InvalidProbabilityCreationException{
+        return Chance.create(1 - value);
     }
 
-    public Chance or(Chance secondChance) {
-        return Chance.create(this.not().value * secondChance.not().value).not();
+    public Chance or(Chance secondChance) throws  InvalidProbabilityCreationException{
+        return this.and(secondChance).not();
+    }
+
+    Chance and(Chance secondChance) throws  InvalidProbabilityCreationException{
+        return Chance.create(this.not().value * secondChance.not().value);
     }
 }
