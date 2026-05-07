@@ -10,12 +10,12 @@ public class Rectangle implements Quadrilateral{
     }
 
     @Override
-    public double area() {
+    public double calculateArea() {
         return width * height;
     }
 
     @Override
-    public double perimeter() {
+    public double calculatePerimeter() {
         return 2 * (height + width);
     }
 }

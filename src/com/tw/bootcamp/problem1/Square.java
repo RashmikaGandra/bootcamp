@@ -8,12 +8,12 @@ public class Square implements Quadrilateral{
     }
 
     @Override
-    public double area() {
+    public double calculateArea() {
         return side * side;
     }
 
     @Override
-    public double perimeter() {
+    public double calculatePerimeter() {
         return 4 * side;
     }
 }
