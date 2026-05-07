@@ -30,7 +30,6 @@ public class Chance {
     }
 
     public Chance or(Chance secondChance) {
-        double secondChanceValue = secondChance.value;
-        return Chance.create(value + secondChanceValue - value * secondChanceValue);
+        return Chance.create(this.not().value * secondChance.not().value).not();
     }
 }
