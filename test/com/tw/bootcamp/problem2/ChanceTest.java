@@ -20,14 +20,14 @@ public class ChanceTest {
 
     @Test
     void shouldGiveChanceForGettingTail() {
-        final Chance chanceOfGettingTail = Chance.create(0.25);
-        assertEquals(Chance.create(0.25), chanceOfGettingTail);
+        final Chance chanceOfGettingTail = Chance.create(0.5);
+        assertEquals(Chance.create(0.5), chanceOfGettingTail);
     }
 
     @Test
     void shouldReturnChanceForNotGettingTail() {
-        final Chance chanceForNotGettingTail = Chance.create(0.23);
-        assertEquals(Chance.create(0.23), chanceForNotGettingTail);
+        final Chance chanceForNotGettingTail = Chance.create(0.25);
+        assertEquals(Chance.create(0.75), chanceForNotGettingTail.not());
     }
 
     @Test
@@ -36,4 +36,16 @@ public class ChanceTest {
         assertEquals(Chance.create(0.24), chanceForGettingTailWith2Coins);
     }
 
+    @Test
+    void shouldReturnTheChanceOfGetting3OnDice() {
+        final Chance chanceOfGetting3OnDice = Chance.create(0.16);
+        assertEquals(Chance.create(0.16), chanceOfGetting3OnDice);
+    }
+
+    @Test
+    void shouldReturnChanceOfGettingAtLeastOneTailWith2Coins() {
+        final Chance chanceOfGettingTailOnFirstCoin = Chance.create(0.5);
+        final Chance chanceOfGettingTailOnSecondCoin = Chance.create(0.5);
+        assertEquals(Chance.create(0.75), chanceOfGettingTailOnFirstCoin.or(chanceOfGettingTailOnSecondCoin));
+    }
 }

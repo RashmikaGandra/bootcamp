@@ -24,4 +24,13 @@ public class Chance {
     public int hashCode() {
         return Objects.hashCode(value);
     }
+
+    public Chance not() {
+        return Chance.create(1-value);
+    }
+
+    public Chance or(Chance secondChance) {
+        double secondChanceValue = secondChance.value;
+        return Chance.create(value + secondChanceValue - value * secondChanceValue);
+    }
 }
