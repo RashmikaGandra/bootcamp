@@ -31,6 +31,12 @@ public class RectangleTest {
     }
 
     @Test
+    void shouldThrowErrorForNegativeValues() {
+        final IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> Rectangle.createRectangle(-10.5, -23.0));
+        assertEquals("Values cannot be negative!", illegalArgumentException.getMessage());
+    }
+
+    @Test
     void shouldReturnAreaOfSquare() {
         final Rectangle square = Rectangle.createSquare(5);
         final double area = square.calculateArea();

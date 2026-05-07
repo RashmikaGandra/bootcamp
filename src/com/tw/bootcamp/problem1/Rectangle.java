@@ -9,7 +9,8 @@ public class Rectangle {
         this.height = height;
     }
 
-    public static Rectangle createRectangle(double width, double height) {
+    public static Rectangle createRectangle (double width, double height) throws IllegalArgumentException {
+        if(width < 0 || height < 0) throw new IllegalArgumentException("Values cannot be negative!");
         return new Rectangle(width, height);
     }
 
