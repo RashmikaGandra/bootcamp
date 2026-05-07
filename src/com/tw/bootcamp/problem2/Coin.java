@@ -6,4 +6,8 @@ public class Coin {
     public static double chanceOfGettingTail() {
         return (double) 1 /totalFaces;
     }
+
+    public static double chanceOfNotGettingTail() {
+        return 1 - chanceOfGettingTail();
+    }
 }

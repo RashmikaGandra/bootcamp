@@ -10,4 +10,10 @@ public class CoinTest {
         final double chance = Coin.chanceOfGettingTail();
         assertEquals(0.5, chance, 0.0);
     }
+
+    @Test
+    void shouldReturnChanceOfNotGettingTails() {
+        final double chance = Coin.chanceOfNotGettingTail();
+        assertEquals(0.5, chance, 0.0);
+    }
 }
