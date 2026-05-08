@@ -15,14 +15,12 @@ public class Length {
         return new Length(value, unit);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Length length)) return false;
-        return Double.compare(value * unit.conversionFactor, length.value * length.unit.conversionFactor) <= 1;
+    public boolean isEqual(Length length) {
+        return Double.compare(toBase(this), toBase(length)) <= 1;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(value, unit);
+    private double toBase(Length length) {
+        return length.value * length.unit.conversionFactor;
     }
+
 }
