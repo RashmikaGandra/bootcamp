@@ -8,8 +8,13 @@ public class Lot {
     private final int capacity;
     private final List<Car> lot = new ArrayList<>();
 
-    public Lot(int capacity) {
+    private Lot(int capacity) {
         this.capacity = capacity;
+    }
+
+    public static Lot create(int capacity) throws IllegalLotCapacity {
+        if (capacity < 0) throw new IllegalLotCapacity();
+        return new Lot(capacity);
     }
 
     @Override
@@ -24,6 +29,11 @@ public class Lot {
     }
 
     public boolean park(Car car) {
+        if (isFull()) return false;
         return lot.add(car);
+    }
+
+    public boolean isFull() {
+        return lot.size() == capacity;
     }
 }
