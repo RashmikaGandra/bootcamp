@@ -22,7 +22,7 @@ public class Volume {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Volume volume)) return false;
-        return Double.compare(toBase(this), toBase(volume)) <= 1;
+        return Math.abs(toBase(this) - toBase(volume)) <= 0.0001;
     }
 
     @Override

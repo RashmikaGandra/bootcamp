@@ -28,7 +28,7 @@ public class Length {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Length length)) return false;
-        return Double.compare(toBase(this), toBase(length)) <= 1;
+        return Double.compare(toBase(length), toBase(this)) <= 0.0001;
     }
 
     @Override
