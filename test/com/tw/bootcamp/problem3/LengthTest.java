@@ -9,20 +9,37 @@ public class LengthTest {
     void shouldReturnTrueIfFeetAndInchAreEqual() {
         final Length feet = Length.create(1, LengthUnit.FEET);
         final Length inch = Length.create(12, LengthUnit.INCH);
-        assertTrue(feet.isEqual(inch));
+        assertEquals(feet, inch);
     }
 
     @Test
     void shouldReturnTrueIfInchAndCmAreEqual() {
         final Length inch = Length.create(2, LengthUnit.INCH);
         final Length cm = Length.create(5, LengthUnit.CM);
-        assertTrue(inch.isEqual(cm));
+        assertEquals(inch, cm);
     }
 
     @Test
     void shouldReturnTrueIfCmAndMmAreEqual() {
         final Length mm = Length.create(10, LengthUnit.MM);
         final Length cm = Length.create(1, LengthUnit.CM);
-        assertTrue(mm.isEqual(cm));
+        assertEquals(mm, cm);
+    }
+
+    @Test
+    void shouldAddLengthOfSameTypeAndReturnLengthOfSameType() {
+        final Length twoInch = Length.create(2, LengthUnit.INCH);
+        final Length fourInch = Length.create(4, LengthUnit.INCH);
+
+        assertEquals(fourInch, twoInch.add(twoInch));
+    }
+
+    @Test
+    void shouldAddLengthOfDifferentTypeAndReturnLengthOfFirstType() {
+        final Length twoInch = Length.create(2, LengthUnit.INCH);
+        final Length twoAndHalfCm = Length.create(2.5, LengthUnit.CM);
+        final Length threeInch = Length.create(3, LengthUnit.INCH);
+
+        assertEquals(threeInch, twoInch.add(twoAndHalfCm));
     }
 }

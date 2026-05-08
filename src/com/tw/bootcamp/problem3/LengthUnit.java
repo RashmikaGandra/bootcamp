@@ -6,9 +6,17 @@ public enum LengthUnit {
     CM(10),
     MM(1);
 
-    public final double conversionFactor;
+    private final double conversionFactor;
 
     LengthUnit(double conversionFactor) {
         this.conversionFactor = conversionFactor;
+    }
+
+    public double toBase(double quantity){
+        return quantity * conversionFactor;
+    }
+
+    public double fromBase(double base){
+        return base / conversionFactor;
     }
 }

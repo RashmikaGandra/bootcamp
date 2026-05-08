@@ -10,6 +10,6 @@ public class VolumeTest {
         final Volume oneGallon = Volume.create(1, VolumeUnit.GALLON);
         final Volume oneLitre = Volume.create(3.78, VolumeUnit.LITRE);
 
-        assertTrue(oneGallon.isEqual(oneLitre));
+        assertEquals(oneGallon, oneLitre);
     }
 }
