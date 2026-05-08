@@ -12,4 +12,13 @@ public class VolumeTest {
 
         assertEquals(oneGallon, oneLitre);
     }
+
+    @Test
+    void shouldAddVolumesOfDifferentTypeAndReturnLengthOfLitreType() {
+        final Volume oneGallon = Volume.create(1, VolumeUnit.GALLON);
+        final Volume oneLitre = Volume.create(1, VolumeUnit.LITRE);
+        final Volume sum = Volume.create(4.78, VolumeUnit.LITRE);
+
+        assertEquals(sum, oneGallon.add(oneLitre));
+    }
 }

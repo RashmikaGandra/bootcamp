@@ -13,4 +13,8 @@ public enum VolumeUnit {
     public double toBase(double quantity){
         return quantity * conversionFactor;
     }
+
+    public double toLitre(double base) {
+        return base / LITRE.conversionFactor;
+    }
 }

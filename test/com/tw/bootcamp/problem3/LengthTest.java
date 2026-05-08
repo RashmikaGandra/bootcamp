@@ -27,7 +27,7 @@ public class LengthTest {
     }
 
     @Test
-    void shouldAddLengthOfSameTypeAndReturnLengthOfSameType() {
+    void shouldAddLengthOfSameTypeAndReturnLengthOfInchType() {
         final Length twoInch = Length.create(2, LengthUnit.INCH);
         final Length fourInch = Length.create(4, LengthUnit.INCH);
 
@@ -35,7 +35,7 @@ public class LengthTest {
     }
 
     @Test
-    void shouldAddLengthOfDifferentTypeAndReturnLengthOfFirstType() {
+    void shouldAddLengthOfDifferentTypeAndReturnLengthOfInchType() {
         final Length twoInch = Length.create(2, LengthUnit.INCH);
         final Length twoAndHalfCm = Length.create(2.5, LengthUnit.CM);
         final Length threeInch = Length.create(3, LengthUnit.INCH);

@@ -21,8 +21,8 @@ public class Length {
 
     public Length add(Length length) {
         final double totalInBase = toBase(length) + toBase(this);
-        final double total = length.unit.fromBase(totalInBase);
-        return Length.create(total, unit);
+        final double total = length.unit.toInch(totalInBase);
+        return Length.create(total, LengthUnit.INCH);
     }
 
     @Override

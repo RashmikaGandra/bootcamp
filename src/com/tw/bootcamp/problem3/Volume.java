@@ -3,20 +3,20 @@ package com.tw.bootcamp.problem3;
 import java.util.Objects;
 
 public class Volume {
-    private final double value;
+    private final double quantity;
     private final VolumeUnit unit;
 
-    private Volume(double value, VolumeUnit unit) {
-        this.value = value;
+    private Volume(double quantity, VolumeUnit unit) {
+        this.quantity = quantity;
         this.unit = unit;
     }
 
-    public static Volume create(double value, VolumeUnit unit) {
-        return new Volume(value, unit);
+    public static Volume create(double quantity, VolumeUnit unit) {
+        return new Volume(quantity, unit);
     }
 
     private double toBase(Volume volume) {
-        return volume.unit.toBase(volume.value);
+        return volume.unit.toBase(volume.quantity);
     }
 
     @Override
@@ -27,6 +27,12 @@ public class Volume {
 
     @Override
     public int hashCode() {
-        return Objects.hash(value, unit);
+        return Objects.hash(quantity, unit);
+    }
+
+    public Volume add(Volume volume) {
+        final double totalInBase = toBase(volume) + toBase(this);
+        final double total = volume.unit.toLitre(totalInBase);
+        return Volume.create(total, VolumeUnit.LITRE);
     }
 }
