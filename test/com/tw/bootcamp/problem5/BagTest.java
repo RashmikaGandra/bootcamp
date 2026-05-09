@@ -26,4 +26,19 @@ public class BagTest {
         IntStream.range(0,4).forEach((i) -> bag.addBall(Ball.GREEN));
         assertFalse(bag.addBall(Ball.GREEN));
     }
+
+    @Test
+    void shouldAddRedBallIfTheCountIsNotMoreThanDoubleOfGreen() {
+        final Bag bag = new Bag();
+        bag.addBall(Ball.GREEN);
+        assertTrue(bag.addBall(Ball.RED));
+    }
+
+    @Test
+    void shouldNotAddRedBallIfTheCountIsMoreThanDoubleOfGreen() {
+        final Bag bag = new Bag();
+        bag.addBall(Ball.GREEN);
+        IntStream.range(0,2).forEach((i) -> bag.addBall(Ball.RED));
+        assertFalse(bag.addBall(Ball.RED));
+    }
 }

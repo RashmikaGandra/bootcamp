@@ -20,8 +20,13 @@ public class Bag {
         final Integer ballCount = bag.get(ball);
 
         return switch (ball){
-            case GREEN ->  ballCount != null && ballCount == 3;
+            case GREEN ->  isNull(ballCount) && ballCount == 3;
+            case RED -> isNull(ballCount) && ballCount == bag.get(Ball.GREEN) * 2;
             default -> false;
         };
+    }
+
+    private static boolean isNull(Integer ballCount) {
+        return ballCount != null;
     }
 }
