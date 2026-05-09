@@ -19,4 +19,11 @@ public class BagTest {
         IntStream.range(0,12).forEach((i) -> bag.addBall(Ball.BLUE));
         assertFalse(bag.addBall(Ball.GREEN));
     }
+
+    @Test
+    void shouldNotContainMoreThan3GreenBall() {
+        final Bag bag = new Bag();
+        IntStream.range(0,4).forEach((i) -> bag.addBall(Ball.GREEN));
+        assertFalse(bag.addBall(Ball.GREEN));
+    }
 }
