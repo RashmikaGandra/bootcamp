@@ -43,9 +43,8 @@ public class BagTest {
     }
 
     @Test
-    void shouldNotAddYellowBallIfTotalBallsAreLessThan2() {
+    void shouldNotAddYellowBallIfTotalBallsAreLessThan1() {
         final Bag bag = new Bag();
-        bag.addBall(Ball.YELLOW);
         assertFalse(bag.addBall(Ball.YELLOW));
     }
 

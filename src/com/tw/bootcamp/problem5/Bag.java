@@ -1,9 +1,7 @@
 package com.tw.bootcamp.problem5;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Bag {
     private final int CAPACITY;
@@ -28,12 +26,13 @@ public class Bag {
         final int ballCount = getBallCount(ball);
 
         return switch (ball) {
-            case GREEN -> ballCount >= 3;
-            case RED -> ballCount >= getBallCount(Ball.GREEN) * 2;
-            case YELLOW -> totalBallsInBag < 2 || ballCount * 100 / totalBallsInBag >= 40;
+            case GREEN -> ballCount == 3;
+            case RED -> ballCount == getBallCount(Ball.GREEN) * 2;
+            case YELLOW -> totalBallsInBag < 1 || ballCount * 100 / totalBallsInBag >= 40;
             default -> false;
         };
     }
+
 
     private Integer getBallCount(Ball ball) {
         final Integer ballCount = bag.get(ball);
