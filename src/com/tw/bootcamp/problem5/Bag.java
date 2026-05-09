@@ -1,7 +1,9 @@
 package com.tw.bootcamp.problem5;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Bag {
     private final int CAPACITY;
@@ -15,26 +17,37 @@ public class Bag {
     }
 
     public boolean addBall(Ball ball) {
-        if(isMaxReached(ball)) return false;
-        bag.compute(ball,(key,value) -> value == null ? 1 : value+1);
+        if (isMaxReached(ball)) return false;
+        bag.compute(ball, (key, value) -> value == null ? 1 : value + 1);
         totalBallsInBag++;
         return true;
     }
 
     private boolean isMaxReached(Ball ball) {
-        if(totalBallsInBag == CAPACITY) return true;
+        if (totalBallsInBag == CAPACITY) return true;
         final int ballCount = getBallCount(ball);
 
-        return switch (ball){
-            case GREEN ->  ballCount == 3;
-            case RED -> ballCount == getBallCount(Ball.GREEN) * 2;
-            case YELLOW ->  totalBallsInBag < 2 || ballCount * 100 / totalBallsInBag >= 40;
+        return switch (ball) {
+            case GREEN -> ballCount >= 3;
+            case RED -> ballCount >= getBallCount(Ball.GREEN) * 2;
+            case YELLOW -> totalBallsInBag < 2 || ballCount * 100 / totalBallsInBag >= 40;
             default -> false;
         };
     }
 
     private Integer getBallCount(Ball ball) {
         final Integer ballCount = bag.get(ball);
-        return ballCount == null ? 0 : ballCount ;
+        return ballCount == null ? 0 : ballCount;
+    }
+
+    public String getSummary() {
+        return String.format("""
+                Blue : %d
+                Red : %d
+                Green : %d
+                Yellow : %d
+                
+                Total : %d
+                """, getBallCount(Ball.BLUE), getBallCount(Ball.RED), getBallCount(Ball.GREEN), getBallCount(Ball.YELLOW), totalBallsInBag);
     }
 }

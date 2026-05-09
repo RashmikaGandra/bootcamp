@@ -60,9 +60,25 @@ public class BagTest {
     @Test
     void shouldNotAddYellowIfTheCountIs40PercentOfTotal() {
         final Bag bag = new Bag();
-        IntStream.range(0,6).forEach((i) -> bag.addBall(Ball.GREEN));
+        IntStream.range(0,6).forEach((i) -> bag.addBall(Ball.BLUE));
         IntStream.range(0,4).forEach((i) -> bag.addBall(Ball.YELLOW));
         assertFalse(bag.addBall(Ball.YELLOW));
     }
 
+    @Test
+    void shouldReturnSummaryOfContentsOfBag() {
+        final Bag bag = new Bag();
+        IntStream.range(0,6).forEach((i) -> bag.addBall(Ball.BLUE));
+        IntStream.range(0,3).forEach((i) -> bag.addBall(Ball.GREEN));
+        bag.addBall(Ball.YELLOW);
+        final String summary = bag.getSummary();
+        assertEquals("""
+                Blue : 6
+                Red : 0
+                Green : 3
+                Yellow : 1
+                
+                Total : 10
+                """,summary);
+    }
 }
