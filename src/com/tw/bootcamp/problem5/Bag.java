@@ -4,9 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Bag {
-    private final int capacity = 12;
-    private int totalBallsInBag = 0;
-    private final Map<Ball, Integer> bag = new HashMap<>();
+    private final int CAPACITY;
+    private int totalBallsInBag;
+    private final Map<Ball, Integer> bag;
+
+    public Bag() {
+        CAPACITY = 12;
+        bag = new HashMap<>();
+        this.totalBallsInBag = 0;
+    }
 
     public boolean addBall(Ball ball) {
         if(isMaxReached(ball)) return false;
@@ -16,17 +22,18 @@ public class Bag {
     }
 
     private boolean isMaxReached(Ball ball) {
-        if(totalBallsInBag == capacity) return true;
-        final Integer ballCount = bag.get(ball);
+        if(totalBallsInBag == CAPACITY) return true;
+        final int ballCount = getBallCount(ball);
 
         return switch (ball){
-            case GREEN ->  isNull(ballCount) && ballCount == 3;
-            case RED -> isNull(ballCount) && ballCount == bag.get(Ball.GREEN) * 2;
+            case GREEN ->  ballCount == 3;
+            case RED -> ballCount == getBallCount(Ball.GREEN) * 2;
             default -> false;
         };
     }
 
-    private static boolean isNull(Integer ballCount) {
-        return ballCount != null;
+    private Integer getBallCount(Ball ball) {
+        final Integer ballCount = bag.get(ball);
+        return ballCount == null ? 0 : ballCount ;
     }
 }

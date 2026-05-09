@@ -28,7 +28,7 @@ public class BagTest {
     }
 
     @Test
-    void shouldAddRedBallIfTheCountIsNotMoreThanDoubleOfGreen() {
+    void shouldAddRedBallIfTheCountIsLessThanDoubleOfGreen() {
         final Bag bag = new Bag();
         bag.addBall(Ball.GREEN);
         assertTrue(bag.addBall(Ball.RED));
