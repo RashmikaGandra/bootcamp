@@ -16,14 +16,14 @@ public class BagTest {
     @Test
     void shouldNotAddBallToBagIfBagIsFull() {
         final Bag bag = new Bag();
-        IntStream.range(0,12).forEach((i) -> bag.addBall(Ball.BLUE));
+        IntStream.range(0, 12).forEach((i) -> bag.addBall(Ball.BLUE));
         assertFalse(bag.addBall(Ball.GREEN));
     }
 
     @Test
     void shouldNotContainMoreThan3GreenBall() {
         final Bag bag = new Bag();
-        IntStream.range(0,4).forEach((i) -> bag.addBall(Ball.GREEN));
+        IntStream.range(0, 3).forEach((i) -> bag.addBall(Ball.GREEN));
         assertFalse(bag.addBall(Ball.GREEN));
     }
 
@@ -38,7 +38,31 @@ public class BagTest {
     void shouldNotAddRedBallIfTheCountIsMoreThanDoubleOfGreen() {
         final Bag bag = new Bag();
         bag.addBall(Ball.GREEN);
-        IntStream.range(0,2).forEach((i) -> bag.addBall(Ball.RED));
+        IntStream.range(0, 2).forEach((i) -> bag.addBall(Ball.RED));
         assertFalse(bag.addBall(Ball.RED));
     }
+
+    @Test
+    void shouldNotAddYellowBallIfTotalBallsAreLessThan2() {
+        final Bag bag = new Bag();
+        bag.addBall(Ball.YELLOW);
+        assertFalse(bag.addBall(Ball.YELLOW));
+    }
+
+    @Test
+    void shouldAddYellowIfTheCountIsNot40PercentOfTotal() {
+        final Bag bag = new Bag();
+        IntStream.range(0, 2).forEach((i) -> bag.addBall(Ball.GREEN));
+        bag.addBall(Ball.YELLOW);
+        assertTrue(bag.addBall(Ball.YELLOW));
+    }
+
+    @Test
+    void shouldNotAddYellowIfTheCountIs40PercentOfTotal() {
+        final Bag bag = new Bag();
+        IntStream.range(0,6).forEach((i) -> bag.addBall(Ball.GREEN));
+        IntStream.range(0,4).forEach((i) -> bag.addBall(Ball.YELLOW));
+        assertFalse(bag.addBall(Ball.YELLOW));
+    }
+
 }

@@ -28,6 +28,7 @@ public class Bag {
         return switch (ball){
             case GREEN ->  ballCount == 3;
             case RED -> ballCount == getBallCount(Ball.GREEN) * 2;
+            case YELLOW ->  totalBallsInBag < 2 || ballCount * 100 / totalBallsInBag >= 40;
             default -> false;
         };
     }
