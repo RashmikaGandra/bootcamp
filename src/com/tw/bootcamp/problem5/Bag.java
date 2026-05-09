@@ -4,7 +4,7 @@ public class Bag {
     private final int capacity = 12;
     private int totalBallsInBag = 0;
 
-    public boolean addBall() {
+    public boolean addBall(Ball ball) {
         if(isFull()) return false;
         totalBallsInBag++;
         return true;
